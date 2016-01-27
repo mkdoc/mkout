@@ -27,6 +27,7 @@
     "mocha": "~2.4.2"
   },
   "scripts": {
+    "lint": "jshint . && jscs .",
     "clean": "rm -rf coverage",
     "test": "NODE_ENV=test mocha ${SPEC:-test/spec}",
     "cover": "NODE_ENV=test istanbul cover _mocha -- ${SPEC:-test/spec}",
