@@ -1,0 +1,35 @@
+{
+  "name": "mk3",
+  "version": "0.0.1",
+  "description": "Swiss army knife for commonmark",
+  "author": "muji",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tmpfs/mk3.git"
+  },
+  "keywords": [
+    "markdown",
+    "commonmark",
+    "ast",
+    "transform"
+  ],
+  "dependencies": {
+    "circular": "~1.0.5",
+    "cli-argparse": "~1.0.9",
+    "commonmark": "~0.24.0",
+    "through3": "~1.1.5"
+  },
+  "devDependencies": {
+    "chai": "~3.4.1",
+    "coveralls": "~2.11.6",
+    "istanbul": "~0.4.2",
+    "mocha": "~2.4.2"
+  },
+  "scripts": {
+    "clean": "rm -rf coverage",
+    "test": "NODE_ENV=test mocha ${SPEC:-test/spec}",
+    "cover": "NODE_ENV=test istanbul cover _mocha -- ${SPEC:-test/spec}",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  }
+}

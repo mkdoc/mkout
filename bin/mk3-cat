@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+  
+var cli = require('../lib/cli/cat')
+  , res = cli(process.argv.slice(2));
+
+if(res instanceof Error) {
+  console.error(res.message);
+  process.exit(1);
+}
+
