@@ -31,7 +31,7 @@
     "clean": "rm -rf coverage",
     "readme": "mdp --force -v",
     "test": "NODE_ENV=test mocha ${SPEC:-test/spec}",
-    "cover": "NODE_ENV=test istanbul cover -i 'lib/*.js' _mocha -- ${SPEC:-test/spec}",
+    "cover": "NODE_ENV=test istanbul cover _mocha -- ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "mdp": {
