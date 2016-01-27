@@ -4,7 +4,6 @@ var expect = require('chai').expect
 describe('cdb:', function() {
 
   it('should cat single file to ast', function(done) {
-    expect(mk3).to.be.a('function');
     var concat = mk3.cat();
     concat.on('data', function onData(data) {
       expect(data.type).to.eql('Document');
