@@ -117,17 +117,17 @@ describe('cdb:', function() {
     done();
   });
 
-  //it('should render hard line break', function(done) {
-    //var source = 'Foo  \n';
-    //var reader = new commonmark.Parser();
-    //var writer = new MarkdownRenderer();
-    //var ast = reader.parse(source);
-    //var md = writer.render(ast);
-    //expect(md).to.be.a('string');
+  it('should render hard line break', function(done) {
+    var source = 'foo  \nbar\n';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
     //console.dir(md)
-    //expect(md.indexOf('Foo\\\n')).to.eql(0);
-    //done();
-  //});
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   it('should render inline code', function(done) {
     var source = '`code`';
@@ -214,6 +214,17 @@ describe('cdb:', function() {
     var md = writer.render(ast);
     expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should render custom block', function(done) {
+    var source = '<component>\nfoo\n</component>';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    //expect(md.indexOf(source)).to.eql(0);
     done();
   });
 

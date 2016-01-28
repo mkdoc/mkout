@@ -22,3 +22,13 @@ function(){}
 
 > Quote of the day
 > with multiple lines
+
+<p class="foo">some text</p>
+
+### Hard line break
+
+foo  
+bar
+
+baz\
+qux
