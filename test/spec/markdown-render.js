@@ -81,6 +81,17 @@ describe('cdb:', function() {
     done();
   });
 
+  it('should render soft line break', function(done) {
+    var source = 'foo\nbar';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    console.dir(md)
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   //it('should render hard line break', function(done) {
     //var source = 'Foo  \n';
