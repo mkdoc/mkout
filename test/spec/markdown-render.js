@@ -160,4 +160,40 @@ describe('cdb:', function() {
     done();
   });
 
+  it('should render unordered list', function(done) {
+    var source = '* foo\n* bar\n';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should render blockquote', function(done) {
+    var source = '> foo';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should throw error on unknown node type', function(done) {
+    var source = '> foo';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    ast._type = 'UnknownDocument';
+    function fn() {
+      writer.render(ast);
+    }
+    expect(fn).throws(Error);
+    expect(fn).throws(/unknown node type/i);
+    done();
+  });
+
 });
