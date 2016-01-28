@@ -195,6 +195,17 @@ describe('cdb:', function() {
     done();
   });
 
+  it('should render ordered list (period)', function(done) {
+    var source = '1. foo\n2. bar\n';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
   it('should render blockquote', function(done) {
     var source = '> foo';
     var reader = new commonmark.Parser();
