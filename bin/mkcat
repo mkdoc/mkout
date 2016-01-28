@@ -1,7 +1,13 @@
 #!/usr/bin/env node
   
 var cli = require('../lib/cli/cat')
-  , res = cli(process.argv.slice(2));
+  , res;
+
+try {
+  res = cli(process.argv.slice(2));
+}catch(e) {
+  res = e;
+}
 
 if(res instanceof Error) {
   console.error(res.message);
