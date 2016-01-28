@@ -59,6 +59,30 @@ describe('cdb:', function() {
     done();
   });
 
+  it('should render image', function(done) {
+    var source = '![Commonmark]'
+      + '(http://commonmark.org/images/markdown-mark.png)';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should render image with title', function(done) {
+    var source = '![Commonmark]'
+      + '(http://commonmark.org/images/markdown-mark.png "Markdown")';
+    var reader = new commonmark.Parser();
+    var writer = new MarkdownRenderer();
+    var ast = reader.parse(source);
+    var md = writer.render(ast);
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
   it('should render html block', function(done) {
     var source = '<p>foo</p>';
     var reader = new commonmark.Parser();
