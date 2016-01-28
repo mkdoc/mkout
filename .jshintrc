@@ -9,5 +9,6 @@
   "noarg"                   : true,
   "mocha"                   : true,
   "unused"                  : true,
-  "asi"                     : true
+  "asi"                     : true,
+  "validthis"               : true
 }
