@@ -8,9 +8,17 @@ function(){}
 
 ## List
 
-* apples
-* oranges
-* pears
+1. fruits
+  * apples
+  * oranges
+  * pears
+2. vegetables
+  - potatoes
+  - beans
+
+1) a
+2) b
+3) c
 
 > Quote of the day
 > with multiple lines
