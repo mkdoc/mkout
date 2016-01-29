@@ -6,6 +6,8 @@ Some `inline` code with *emph* and **bold** and _underline_.
 function(){}
 ```
 
+---
+
 ## List
 
 1. fruits
