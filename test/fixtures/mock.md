@@ -1,4 +1,5 @@
-# Heading
+Heading
+=======
 
 Some `inline` code with *emph*, **bold**, _emphasis with underlines_ and an ![image](http://commonmark.org/images/markdown-mark.png).
 
@@ -23,7 +24,7 @@ function(){}
 3) c
 
 > Quote of the day
-> with multiple lines
+*with* multiple lines
 
 <p class="foo">some text</p>
 
