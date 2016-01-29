@@ -1,6 +1,6 @@
 # Heading
 
-Some `inline` code with *emph* and **bold** and _underline_.
+Some `inline` code with *emph*, **bold**, _emphasis with underlines_ and an ![image](http://commonmark.org/images/markdown-mark.png).
 
 ```javascript foo bar
 function(){}
