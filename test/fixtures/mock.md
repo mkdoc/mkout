@@ -35,3 +35,5 @@ bar
 
 baz\
 qux
+
+[link]: http://commonmark.org
