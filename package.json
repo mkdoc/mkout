@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/mkdoc/mkout.git"
   },
+  "bugs": {
+    "url": "https://github.com/mkdoc/mkout/issues"
+  },
   "keywords": [
     "markdown",
     "commonmark",
