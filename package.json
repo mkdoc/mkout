@@ -1,12 +1,12 @@
 {
-  "name": "mk3",
-  "version": "0.0.1",
-  "description": "Swiss army knife for commonmark",
+  "name": "mkout",
+  "version": "1.0.0",
+  "description": "Output renderers for commonmark",
   "author": "muji",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tmpfs/mk3.git"
+    "url": "https://github.com/mkdoc/mkout.git"
   },
   "keywords": [
     "markdown",
@@ -15,7 +15,6 @@
     "transform"
   ],
   "dependencies": {
-    "circular": "~1.0.5",
     "commonmark": "~0.24.0",
     "through3": "~1.1.5"
   },
@@ -34,13 +33,13 @@
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "mdp": {
-    "title": "mk3",
+    "title": "Renderers",
     "pedantic": true,
     "include": "doc/readme",
     "require": "lib",
     "links": "links.md",
     "toc": "Table of Contents",
-    "base": "https://github.com/tmpfs/mk3",
+    "base": "https://github.com/mkdoc/mkout",
     "partial": [
       {
         "inc": [

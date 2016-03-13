@@ -1,5 +1,5 @@
 ## Install
 
 ```
-npm i mk3 --save
+npm i mkout --save
 ```

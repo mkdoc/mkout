@@ -1,7 +1,7 @@
 Table of Contents
 =================
 
-* [mk3](#mk3)
+* [mkout](#mkout)
   * [Install](#install)
   * [Developer](#developer)
     * [Test](#test)
@@ -10,15 +10,15 @@ Table of Contents
     * [Clean](#clean)
     * [Readme](#readme)
 
-mk3
-===
+mkout
+=====
 
 Swiss army knife for [commonmark](http://commonmark.org).
 
 ## Install
 
 ```
-npm i mk3 --save
+npm i mkout --save
 ```
 
 ## Developer
