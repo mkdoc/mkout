@@ -54,4 +54,7 @@ function out(opts, cb) {
   return opts.output;
 }
 
+// supported renderer types
+out.types = types;
+
 module.exports = out;
