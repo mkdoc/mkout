@@ -15,7 +15,8 @@
     "transform"
   ],
   "dependencies": {
-    "commonmark": "~0.24.0",
+    "commonmark": "jgm/commonmark.js",
+    "string-repeater": "~1.0.3",
     "through3": "~1.1.5"
   },
   "devDependencies": {

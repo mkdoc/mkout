@@ -1,1 +1,1 @@
-Swiss army knife for [commonmark][].
+Output renderers for [commonmark][].
