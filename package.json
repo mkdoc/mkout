@@ -47,11 +47,6 @@
           "introduction.md",
           "install.md"
         ]
-      },
-      {
-        "inc": [
-          "developer.md"
-        ]
       }
     ]
   }
