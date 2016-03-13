@@ -7,6 +7,10 @@ Table of Contents
 Renderers
 =========
 
+[<img src="https://travis-ci.org/mkdoc/mkout.svg?v=3" alt="Build Status">](https://travis-ci.org/mkdoc/mkout)
+[<img src="http://img.shields.io/npm/v/mkout.svg?v=3" alt="npm version">](https://npmjs.org/package/mkout)
+[<img src="https://coveralls.io/repos/mkdoc/mkout/badge.svg?branch=master&service=github&v=3" alt="Coverage Status">](https://coveralls.io/github/mkdoc/mkout?branch=master).
+
 Output renderers for [commonmark](http://commonmark.org).
 
 ## Install
