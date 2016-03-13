@@ -43,7 +43,6 @@ function out(opts, cb) {
       return cb(err); 
     }
     opts.output.write(renderer.render(doc), cb);
-    cb();
   });
 
   if(cb) {
