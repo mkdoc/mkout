@@ -123,7 +123,6 @@ describe('mkout:', function() {
     //var ast = reader.parse(source);
     //var md = writer.render(ast);
     //expect(md).to.be.a('string');
-    //console.dir(md)
     //expect(md.indexOf(source)).to.eql(0);
     //done();
   //});
@@ -189,7 +188,6 @@ describe('mkout:', function() {
     var writer = new MarkdownRenderer();
     var ast = reader.parse(source);
     var md = writer.render(ast);
-    console.dir(md)
     expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
@@ -201,6 +199,7 @@ describe('mkout:', function() {
     var writer = new MarkdownRenderer();
     var ast = reader.parse(source);
     var md = writer.render(ast);
+    console.dir(md)
     expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
@@ -225,20 +224,6 @@ describe('mkout:', function() {
     var md = writer.render(ast);
     expect(md).to.be.a('string');
     //expect(md.indexOf(source)).to.eql(0);
-    done();
-  });
-
-  it('should throw error on unknown node type', function(done) {
-    var source = '> foo';
-    var reader = new commonmark.Parser();
-    var writer = new MarkdownRenderer();
-    var ast = reader.parse(source);
-    ast._type = 'UnknownDocument';
-    function fn() {
-      writer.render(ast);
-    }
-    expect(fn).throws(Error);
-    expect(fn).throws(/unknown node type/i);
     done();
   });
 
