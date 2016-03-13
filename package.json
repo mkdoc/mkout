@@ -16,15 +16,14 @@
   ],
   "dependencies": {
     "circular": "~1.0.5",
-    "cli-argparse": "~1.0.9",
     "commonmark": "~0.24.0",
     "through3": "~1.1.5"
   },
   "devDependencies": {
-    "chai": "~3.4.1",
-    "coveralls": "~2.11.6",
+    "chai": "~3.5.0",
+    "coveralls": "~2.11.8",
     "istanbul": "~0.4.2",
-    "mocha": "~2.4.2"
+    "mocha": "~2.4.5"
   },
   "scripts": {
     "lint": "jshint . && jscs .",

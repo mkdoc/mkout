@@ -10,6 +10,7 @@ describe('cdb:', function() {
     var writer = new MarkdownRenderer();
     var ast = reader.parse(source);
     var md = writer.render(ast);
+    //console.dir(md)
     expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
