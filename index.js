@@ -24,7 +24,7 @@ function out(opts, cb) {
   opts.input = opts.input || process.stdin;
   opts.output = opts.output || process.stdout;
   opts.type = opts.type || 'markdown';
-  opts.render = opts.render || {stream: process.stdout};
+  opts.render = opts.render || {};
 
   if(opts.type === 'json') {
     opts.input.pipe(opts.output);
