@@ -1,6 +1,6 @@
 {
   "name": "mkout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Output renderers for commonmark",
   "author": "muji",
   "license": "MIT",
