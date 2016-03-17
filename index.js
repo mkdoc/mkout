@@ -1,9 +1,25 @@
 var deserialize = require('mkast').deserialize
+  , Node = require('mkast').Node
+  , through = require('through3')
   , types = {
       markdown: './lib/render/markdown',
       xml: 'commonmark/lib/xml',
       html: 'commonmark/lib/render/html'
-    }
+    };
+
+function Render(opts) {
+  opts = opts || {};
+  this.renderer = opts.renderer;
+}
+
+function render(chunk, encoding, cb) {
+  if(!Node.is(chunk, Node.EOF)) {
+    this.push(this.renderer.render(chunk));
+  }
+  cb();
+}
+
+var RenderStream = through.transform(render, {ctor: Render});
 
 /**
  *  Print via a renderer to an output stream.
@@ -21,10 +37,12 @@ var deserialize = require('mkast').deserialize
  */
 function out(opts, cb) {
   opts = opts || {};
-  opts.input = opts.input || process.stdin;
-  opts.output = opts.output || process.stdout;
+  opts.input = opts.input;
+  opts.output = opts.output;
   opts.type = opts.type || 'markdown';
   opts.render = opts.render || {};
+
+  //cb = cb || function noop(){};
 
   if(opts.type === 'json') {
     opts.input.pipe(opts.output);
@@ -36,13 +54,22 @@ function out(opts, cb) {
   }
 
   var Type = require(types[opts.type])
-    , renderer = new Type(opts.render);
+    , renderer = new Type(opts.render)
+    , deserializer
+    , render = new RenderStream({renderer: renderer});
 
-  deserialize(opts.input, function(err, doc) {
-    if(err) {
-      return cb(err); 
-    }
-    opts.output.write(renderer.render(doc), cb);
+  deserializer = deserialize(opts.input);
+
+  if(!opts.output) {
+    deserializer.pipe(render);
+    return render; 
+  }
+
+  // handle output stream
+  render.pipe(opts.output); 
+
+  deserializer.on('eof', function(doc) {
+    opts.output.write(renderer.render(doc));
   });
 
   if(cb) {
