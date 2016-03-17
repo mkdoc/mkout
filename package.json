@@ -1,7 +1,7 @@
 {
   "name": "mkout",
   "version": "1.0.4",
-  "description": "Output renderers for commonmark",
+  "description": "Render an abstract syntax tree",
   "author": "muji",
   "license": "MIT",
   "repository": {
