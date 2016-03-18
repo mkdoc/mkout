@@ -10,11 +10,14 @@ var deserialize = require('mkast').deserialize
 function Render(opts) {
   opts = opts || {};
   this.renderer = opts.renderer;
-  this.pipeline = opts.pipeline;
 }
 
 function render(chunk, encoding, cb) {
   if(!Node.is(chunk, Node.EOF)) {
+    //if(Node.is(chunk, Node.DOCUMENT)) {
+      //console.error('render document %s', chunk._file);
+      //console.error(chunk instanceof Node);
+    //}
     this.push(this.renderer.render(chunk));
   }
   cb();
@@ -55,14 +58,12 @@ function out(opts, cb) {
   var Type = require(types[opts.type])
     , renderer = new Type(opts.render)
     , deserializer
-    , render = new RenderStream(
-        {renderer: renderer, pipeline: opts.pipeline});
+    , render = new RenderStream({renderer: renderer});
 
   deserializer = deserialize(opts.input);
 
-  if(opts.pipeline !== true) {
-    deserializer.pipe(render);
-    return render; 
+  if(opts.cli !== true) {
+    return render;
   }
 
   // handle output stream
