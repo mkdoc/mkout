@@ -10,6 +10,7 @@ var deserialize = require('mkast').deserialize
 function Render(opts) {
   opts = opts || {};
   this.renderer = opts.renderer;
+  this.pipeline = opts.pipeline;
 }
 
 function render(chunk, encoding, cb) {
@@ -42,8 +43,6 @@ function out(opts, cb) {
   opts.type = opts.type || 'markdown';
   opts.render = opts.render || {};
 
-  //cb = cb || function noop(){};
-
   if(opts.type === 'json') {
     opts.input.pipe(opts.output);
     return opts.output; 
@@ -56,17 +55,20 @@ function out(opts, cb) {
   var Type = require(types[opts.type])
     , renderer = new Type(opts.render)
     , deserializer
-    , render = new RenderStream({renderer: renderer});
+    , render = new RenderStream(
+        {renderer: renderer, pipeline: opts.pipeline});
 
   deserializer = deserialize(opts.input);
 
-  if(!opts.output) {
+  if(opts.pipeline !== true) {
     deserializer.pipe(render);
     return render; 
   }
 
   // handle output stream
-  render.pipe(opts.output); 
+  if(opts.output) {
+    render.pipe(opts.output); 
+  }
 
   deserializer.on('eof', function(doc) {
     opts.output.write(renderer.render(doc));
