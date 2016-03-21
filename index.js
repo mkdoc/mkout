@@ -14,10 +14,6 @@ function Render(opts) {
 
 function render(chunk, encoding, cb) {
   if(!Node.is(chunk, Node.EOF)) {
-    //if(Node.is(chunk, Node.DOCUMENT)) {
-      //console.error('render document %s', chunk._file);
-      //console.error(chunk instanceof Node);
-    //}
     this.push(this.renderer.render(chunk));
   }
   cb();
@@ -71,9 +67,13 @@ function out(opts, cb) {
     render.pipe(opts.output); 
   }
 
-  deserializer.on('eof', function(doc) {
+  function writer(doc) {
     opts.output.write(renderer.render(doc));
-  });
+  }
+
+  deserializer
+    .on('eof', writer)
+    .on('fragment', writer);
 
   if(cb) {
     opts.output
