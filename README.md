@@ -4,7 +4,7 @@
 [![npm version](http://img.shields.io/npm/v/mkout.svg?v=3)](https://npmjs.org/package/mkout)
 [![Coverage Status](https://coveralls.io/repos/mkdoc/mkout/badge.svg?branch=master&service=github&v=3)](https://coveralls.io/github/mkdoc/mkout?branch=master)
 
-> Render documents to HTML, XML, JSON
+> Render documents to Markdown, HTML, XML, YAML and JSON
 
 Output renderers for [commonmark][].
 

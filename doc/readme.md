@@ -2,7 +2,7 @@
 
 <? @include readme/badges.md ?>
 
-> Render documents to HTML, XML, JSON
+> Render documents to Markdown, HTML, XML, YAML and JSON
 
 Output renderers for [commonmark][].
 
