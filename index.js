@@ -3,6 +3,7 @@ var deserialize = require('mkast').deserialize
   , through = require('through3')
   , types = {
       markdown: './lib/render/markdown',
+      yaml: './lib/render/yaml',
       xml: 'commonmark/lib/xml',
       html: 'commonmark/lib/render/html'
     };
