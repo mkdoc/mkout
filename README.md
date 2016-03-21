@@ -48,10 +48,22 @@ Print as XML:
 mkcat README.md | mkout --xml
 ```
 
+YAML is particularly useful to get a compact view of the tree:
+
+```shell
+mkcat README.md | mkout -y
+```
+
+For more detailed YAML use:
+
+```shell
+mkcat README.md | mkout -yY
+```
+
 Print as JSON:
 
 ```shell
-mkcat README.md | mkout --json
+mkcat README.md | mkout -j
 ```
 
 ## Help
@@ -64,6 +76,8 @@ Render an abstract syntax tree.
   -d, --md             Set output renderer to markdown (default)
   -m, --html           Set output renderer to HTML
   -x, --xml            Set output renderer to XML
+  -y, --yaml           Set output renderer to YAML
+  -Y, --yaml-full      Do not compact YAML output
   -j, --json           Pass through input JSON
   -t, --type=[TYPE]    Set the output renderer type
   -o, --output=[FILE]  Write output to FILE (default: stdout)

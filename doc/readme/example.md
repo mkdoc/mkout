@@ -18,8 +18,20 @@ Print as XML:
 mkcat README.md | mkout --xml
 ```
 
+YAML is particularly useful to get a compact view of the tree:
+
+```shell
+mkcat README.md | mkout -y
+```
+
+For more detailed YAML use:
+
+```shell
+mkcat README.md | mkout -yY
+```
+
 Print as JSON:
 
 ```shell
-mkcat README.md | mkout --json
+mkcat README.md | mkout -j
 ```
