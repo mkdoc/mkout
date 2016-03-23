@@ -48,6 +48,12 @@ Print as XML:
 mkcat README.md | mkout --xml
 ```
 
+Print as plain text:
+
+```shell
+mkcat README.md | mkout --text
+```
+
 YAML is particularly useful to get a compact view of the tree:
 
 ```shell
