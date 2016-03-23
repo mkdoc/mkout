@@ -188,6 +188,21 @@ the empty object:
 Code blocks (when not preserved) are indented by the whitespace specified
 with the `indent` option, default is two spaces.
 
+Unless `autolinks` are disabled links are removed and appended to the end
+of the document such that the input:
+
+```markdown
+[Commonmark](http://commonmark.org)
+```
+
+Is converted to:
+
+```
+Commonmark[1]
+
+[1]: http://commomark.org
+```
+
 * `opts` Object processing options.
 
 #### Options
