@@ -1,6 +1,6 @@
 {
   "name": "mkout",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Render an abstract syntax tree",
   "author": "muji",
   "license": "MIT",
