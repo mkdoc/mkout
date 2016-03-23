@@ -1,9 +1,11 @@
 1. fruits
-  * apples
-  * oranges
-  * pears
+   * apples
+   * oranges
+   * pears
+
 2. vegetables
-  - potatoes
-  - beans
-    - french
-    - long
+   - potatoes
+   - beans
+     - french
+     - long
+
