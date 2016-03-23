@@ -129,7 +129,7 @@ new JsonRenderer([opts])
 
 Renders an abstract syntax tree to JSON.
 
-By default prints a compact JSON document, pass `indent` for less compact
+By default prints a compact JSON document, pass `indent` for indented
 output:
 
 ```javascript
