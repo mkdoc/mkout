@@ -8,6 +8,7 @@ var through = require('through3')
       yaml: './lib/yaml',
       json: './lib/json',
       text: './lib/text',
+      man: './lib/man',
       xml: commonmark.XmlRenderer,
       html: commonmark.HtmlRenderer
     }
