@@ -1,9 +1,10 @@
-var deserialize = require('mkast').deserialize
-  , Node = require('mkast').Node
-  , through = require('through3')
+var through = require('through3')
+  , ast = require('mkast')
+  , deserialize = ast.deserialize
+  , Node = ast.Node
   , types = {
-      markdown: './lib/render/markdown',
-      yaml: './lib/render/yaml',
+      markdown: './lib/markdown',
+      yaml: './lib/yaml',
       xml: 'commonmark/lib/xml',
       html: 'commonmark/lib/render/html'
     };
