@@ -15,10 +15,13 @@
     "markdown",
     "commonmark",
     "ast",
-    "transform"
+    "transform",
+    "render",
+    "html",
+    "xml",
+    "yaml"
   ],
   "dependencies": {
-    "commonmark": "tmpfs/commonmark.js",
     "mkast": "~1.2.2",
     "string-repeater": "~1.0.3",
     "through3": "~1.1.5"
