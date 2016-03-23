@@ -108,6 +108,43 @@ Returns an output stream.
 * `output` Writable=process.stdout output stream.
 * `render` Object renderer options.
 
+### TextRenderer
+
+```javascript
+new TextRenderer([opts])
+```
+
+Renders an abstract syntax tree to a plain text view.
+
+By default this implementation preserves the `heading`, `list` and `item`
+types as markdown - all other markdown formatting is removed.
+
+If you wish to preserve some other aspects of the markdown formatting, you
+can specify options such as:
+
+```javascript
+{preserve:{heading: true, list: true, item: true, emph: true}}
+```
+
+Which would preserve emphasis in addition to the default formatting that
+is preserved. If you don't want to preserve any markdown formatting pass
+the empty object:
+
+```javascript
+{preserve: {}}
+```
+
+Code blocks (when not preserved) are indented by the whitespace specified
+with the `indent` option, default is two spaces.
+
+* `opts` Object processing options.
+
+#### Options
+
+* `autolink` Boolean=true create automatic links by index.
+* `indent` String amount of whitespace indentation for code blocks.
+* `preserve` Object map of node types that should be preserved.
+
 ## License
 
 MIT
