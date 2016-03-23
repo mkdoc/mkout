@@ -151,6 +151,31 @@ with the `indent` option, default is two spaces.
 * `indent` String amount of whitespace indentation for code blocks.
 * `preserve` Object map of node types that should be preserved.
 
+### YamlRenderer
+
+```javascript
+new YamlRenderer([opts])
+```
+
+Renders an abstract syntax tree to YAML.
+
+This implementation is designed to provide an easy to read view of the
+tree; whilst it would certainly be possible to recreate the tree from the
+YAML output it has not been optimized for that use case.
+
+By default a compact view of the tree is rendered, if you also want to
+inspect the node properties disable `compact`:
+
+```javascript
+{compact: false}
+```
+
+* `opts` Object processing options.
+
+#### Options
+
+* `compact` Boolean=true create compact YAML documents.
+
 ## License
 
 MIT
