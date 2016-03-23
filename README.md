@@ -145,6 +145,20 @@ But be careful the tree can be very deep so it is not recommended you set
 
 * `indent` Number=0 number of spaces to indent the JSON.
 
+### MarkdownRenderer
+
+```javascript
+new MarkdownRenderer([opts])
+```
+
+Renders an abstract syntax tree to markdown.
+
+Eventually the aim is to make the output of this renderer fully
+[commonmark][] compliant, at the moment it's output has not been
+completely tested for compliance.
+
+* `opts` Object processing options.
+
 ### TextRenderer
 
 ```javascript
