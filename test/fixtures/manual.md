@@ -38,6 +38,10 @@ Block quotes are indented:
 
 > Quotation text.
 
+## Thematic Breaks
+
+Thematic breaks are not a concept in man page rendering and are ignored.
+
 ## HTML
 
 Inline and block HTML markup is ignored when rendering to man pages, if you wish to include the content in HTML markup it should be normalized to text beforehand.
