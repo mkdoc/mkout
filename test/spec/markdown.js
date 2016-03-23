@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , ast = require('mkast')
   , MarkdownRenderer = require('../../lib/markdown');
 
-describe('mkout:', function() {
+describe('markdown:', function() {
 
   it('should render level 1 heading', function(done) {
     var source = '# Heading (1)';
