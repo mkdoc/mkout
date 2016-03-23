@@ -41,3 +41,9 @@ Print as JSON:
 ```shell
 mkcat README.md | mkout -j
 ```
+
+Pass through the input newline-delimited JSON:
+
+```shell
+mkcat README.md | mkout --noop
+```
