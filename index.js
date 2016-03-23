@@ -1,13 +1,23 @@
 var through = require('through3')
   , ast = require('mkast')
+  , commonmark = ast.commonmark
   , deserialize = ast.deserialize
   , Node = ast.Node
   , types = {
       markdown: './lib/markdown',
       yaml: './lib/yaml',
-      xml: 'commonmark/lib/xml',
-      html: 'commonmark/lib/render/html'
+      text: './lib/text',
+      xml: commonmark.XmlRenderer,
+      html: commonmark.HtmlRenderer
     };
+
+function load(type) {
+  var info = types[type];
+  if(info instanceof Function) {
+    return info; 
+  }
+  return require(info);
+}
 
 function Render(opts) {
   opts = opts || {};
@@ -53,7 +63,7 @@ function out(opts, cb) {
     return cb(new Error('unknown output type: ' + opts.type)); 
   }
 
-  var Type = require(types[opts.type])
+  var Type = load(opts.type)
     , renderer = new Type(opts.render)
     , deserializer
     , render = new RenderStream({renderer: renderer});
