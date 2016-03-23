@@ -73,13 +73,12 @@ mkout [options]
 
 Render an abstract syntax tree.
 
-  -d, --md             Set output renderer to markdown (default)
   -m, --html           Set output renderer to HTML
   -x, --xml            Set output renderer to XML
   -y, --yaml           Set output renderer to YAML
   -Y, --yaml-full      Do not compact YAML output
+  -t, --text           Set output renderer to TEXT
   -j, --json           Pass through input JSON
-  -t, --type=[TYPE]    Set the output renderer type
   -o, --output=[FILE]  Write output to FILE (default: stdout)
   -h, --help           Display this help and exit
   --version            Print the version and exit
