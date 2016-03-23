@@ -57,7 +57,7 @@ mkcat README.md | mkout -y
 For more detailed YAML use:
 
 ```shell
-mkcat README.md | mkout -yY
+mkcat README.md | mkout -Y
 ```
 
 Print as JSON:
