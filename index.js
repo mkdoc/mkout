@@ -6,10 +6,12 @@ var through = require('through3')
   , types = {
       markdown: './lib/markdown',
       yaml: './lib/yaml',
+      json: './lib/json',
       text: './lib/text',
       xml: commonmark.XmlRenderer,
       html: commonmark.HtmlRenderer
-    };
+    }
+  , NOOP = 'noop';
 
 function load(type) {
   var info = types[type];
@@ -54,7 +56,7 @@ function out(opts, cb) {
   opts.type = opts.type || 'markdown';
   opts.render = opts.render || {};
 
-  if(opts.type === 'json') {
+  if(opts.type === NOOP) {
     opts.input.pipe(opts.output);
     return opts.output; 
   }
@@ -98,5 +100,7 @@ function out(opts, cb) {
 
 // supported renderer types
 out.types = types;
+
+out.NOOP = NOOP;
 
 module.exports = out;

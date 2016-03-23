@@ -4,7 +4,7 @@
 [![npm version](http://img.shields.io/npm/v/mkout.svg?v=3)](https://npmjs.org/package/mkout)
 [![Coverage Status](https://coveralls.io/repos/mkdoc/mkout/badge.svg?branch=master&service=github&v=3)](https://coveralls.io/github/mkdoc/mkout?branch=master)
 
-> Render documents to Markdown, HTML, XML, YAML and JSON
+> Render documents to Markdown, Text, HTML, XML, YAML and JSON
 
 Output renderers for [commonmark][].
 
@@ -84,7 +84,8 @@ Render an abstract syntax tree.
   -y, --yaml           Set output renderer to YAML
   -Y, --yaml-full      Do not compact YAML output
   -t, --text           Set output renderer to TEXT
-  -j, --json           Pass through input JSON
+  -j, --json           Set output renderer to JSON
+  -n, --noop           Pass through input JSON
   -o, --output=[FILE]  Write output to FILE (default: stdout)
   -h, --help           Display this help and exit
   --version            Print the version and exit
@@ -113,6 +114,30 @@ Returns an output stream.
 * `input` Readable=process.stdin input stream.
 * `output` Writable=process.stdout output stream.
 * `render` Object renderer options.
+
+### JsonRenderer
+
+```javascript
+new JsonRenderer([opts])
+```
+
+Renders an abstract syntax tree to JSON.
+
+By default prints a compact JSON document, pass `indent` for less compact
+output:
+
+```javascript
+{indent: 1}
+```
+
+But be careful the tree can be very deep so it is not recommended you set
+`indent` to greater than two.
+
+* `opts` Object processing options.
+
+#### Options
+
+* `indent` Number=0 number of spaces to indent the JSON.
 
 ### TextRenderer
 
