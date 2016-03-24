@@ -12,10 +12,9 @@ function assert(obj) {
 
 describe('json:', function() {
 
-  var writer = new JsonRenderer();
-
   it('should render json', function(done) {
-    var source = 'Text'
+    var writer = new JsonRenderer()
+      , source = 'Text'
       , doc = ast.parse(source)
       , res = writer.render(doc)
       , obj = JSON.parse(res);
