@@ -265,13 +265,22 @@ describe('text:', function() {
     //done();
   //});
 
-  //it('should render blockquote', function(done) {
-    //var source = '> foo';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should indent blockquote', function(done) {
+    var source = '> foo';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('  | foo\n\n');
+    done();
+  });
+
+  it('should preserve blockquote', function(done) {
+    var source = '> foo';
+    var writer = new TextRenderer({preserve: {block_quote: true}})
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   it('should remove custom block', function(done) {
     var source = ''

@@ -32,11 +32,21 @@ Code blocks are indented; this is how to generate the man page from this source 
 mkcat test/fixtures/manual.md | mkout --man
 ```
 
+The escape character is escaped so you can use it literally for multi-line commands:
+
+```
+cat intro.md \
+  install.md \
+  license.md > output.md
+```
+
 ## Block Quotes
 
-Block quotes are indented:
+Block quotes are indented and prefixed with a vertical pipe (|):
 
-> Quotation text.
+> Quotation text
+> that can span 
+> multiple lines.
 
 ## Thematic Breaks
 
