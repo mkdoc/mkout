@@ -58,7 +58,11 @@ Using the custom `.hr` macro, currently the width is fixed because the `.l` regi
 
 ## HTML
 
-Inline and block HTML markup is ignored when rendering to man pages, if you wish to include the content in HTML markup it should be normalized to text beforehand.
+<em>Inline</em> and block HTML markup is normalized to text:
+
+<p>
+This is some HTML markup that <em>will</em> appear normalized.
+</p>
 
 If you wish to preserve the raw HTML in the output use the `html` option.
 

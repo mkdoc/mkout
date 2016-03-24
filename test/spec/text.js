@@ -102,10 +102,10 @@ describe('text:', function() {
     done();
   });
 
-  it('should remove html block', function(done) {
+  it('should normalize html block', function(done) {
     var source = '<p>foo</p>';
     var md = writer.render(ast.parse(source));
-    expect(md).to.eql('');
+    expect(md).to.eql('foo\n\n');
     done();
   });
 

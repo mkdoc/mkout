@@ -80,7 +80,7 @@ mkcat README.md | mkout --noop
 
 ## Help
 
-```
+```null
 mkout [options]
 
 Render an abstract syntax tree.
@@ -170,6 +170,23 @@ completely tested for compliance.
 
 * `opts` Object processing options.
 
+### normalize
+
+```javascript
+normalize(text)
+```
+
+Strips HTML tags from a string and collapses whitespace similar to how
+XML text nodes are normalized.
+
+This is designed for the TEXT and MAN output formats so we are not
+concerned with XSS attacks, use `striptags` or another library if you
+need to strip tags destined for HTML output.
+
+Returns the normalized text.
+
+* `text` String input text.
+
 ### TextRenderer
 
 ```javascript
@@ -227,6 +244,9 @@ injected when necessary.
 
 Thematic breaks are rendered as the hyphen (-) repeated 80 times. You may
 change this output with the `hr` option.
+
+HTML is normalized to text unless the `html` option is given in which case
+it is passed through untouched.
 
 * `opts` Object processing options.
 
