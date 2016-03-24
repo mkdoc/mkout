@@ -6,7 +6,7 @@ describe('text:', function() {
 
   var writer = new TextRenderer();
 
-  it('should render level 1 heading', function(done) {
+  it('should preserve level 1 heading', function(done) {
     var source = '# Heading (1)';
     var md = writer.render(ast.parse(source));
     expect(md).to.be.a('string');
@@ -14,7 +14,7 @@ describe('text:', function() {
     done();
   });
 
-  it('should render level 1 heading without preserve', function(done) {
+  it('should render level 1 heading (no preserve)', function(done) {
     var source = '# Heading (1)';
     var writer = new TextRenderer({preserve: {}});
     var md = writer.render(ast.parse(source));
@@ -23,55 +23,95 @@ describe('text:', function() {
     done();
   });
 
-  //it('should render level 6 heading', function(done) {
-    //var source = '###### Heading (6)';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should render autolinks', function(done) {
+    var source = '[Commonmark](http://commonmark.org)'
+      , expected = 'Commonmark[1]\n\n[1]: http://commonmark.org\n';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql(expected);
+    done();
+  });
 
-  //it('should render paragraph', function(done) {
-    //var source = 'Some paragraph text.';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should render duplicate links (autolinks)', function(done) {
+    var source = '[Commonmark](http://commonmark.org) '
+        + '[Commonmark](http://commonmark.org)'
+      , expected = 'Commonmark[1] Commonmark[1]\n\n'
+        + '[1]: http://commonmark.org\n';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql(expected);
+    done();
+  });
 
-  //it('should render link', function(done) {
-    //var source = '[Commonmark](http://commonmark.org)';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should preserve links w/ preserve option', function(done) {
+    var source = '[Commonmark](http://commonmark.org)';
+    var writer = new TextRenderer({preserve: {link: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
-  //it('should render link with title', function(done) {
-    //var source = '[Commonmark](http://commonmark.org "Commonmark")';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should preserve links w/ autolink disabled', function(done) {
+    var source = '[Commonmark](http://commonmark.org)';
+    var writer = new TextRenderer({autolink: false});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
-  //it('should render image', function(done) {
-    //var source = '![Commonmark]'
-      //+ '(http://commonmark.org/images/markdown-mark.png)';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should collapse soft line break', function(done) {
+    var source = 'foo\nbar';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('foo bar\n\n');
+    done();
+  });
 
-  //it('should render image with title', function(done) {
-    //var source = '![Commonmark]'
-      //+ '(http://commonmark.org/images/markdown-mark.png "Markdown")';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should collapse soft line break without space injection', function(done) {
+    var source = 'foo \nbar';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('foo bar\n\n');
+    done();
+  });
+
+  it('should preserve soft line break', function(done) {
+    var source = 'foo\nbar';
+    var writer = new TextRenderer({preserve: {softbreak: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should render paragraph', function(done) {
+    var source = 'Text.';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('Text.\n\n');
+    done();
+  });
+
+  it('should remove image', function(done) {
+    var source = '![Commonmark]'
+      + '(http://commonmark.org/images/markdown-mark.png)';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('Commonmark\n\n');
+    done();
+  });
+
+  it('should preserve image', function(done) {
+    var source = '![Commonmark]'
+      + '(http://commonmark.org/images/markdown-mark.png)';
+    var writer = new TextRenderer({preserve: {image: true}})
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   //it('should render html block', function(done) {
     //var source = '<p>foo</p>';
@@ -89,14 +129,6 @@ describe('text:', function() {
     //done();
   //});
 
-  //it('should render soft line break', function(done) {
-    //var source = 'foo\nbar';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
-
   ////it('should render hard line break', function(done) {
     ////var source = 'foo  \nbar\n';
     ////var md = writer.render(ast.parse(source);
@@ -105,29 +137,56 @@ describe('text:', function() {
     ////done();
   ////});
 
-  //it('should render inline code', function(done) {
-    //var source = '`code`';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should remove inline code', function(done) {
+    var source = '`code`';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('code\n\n');
+    done();
+  });
 
-  //it('should render strong', function(done) {
-    //var source = '**strong**';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should preserve inline code', function(done) {
+    var source = '`code`';
+    var writer = new TextRenderer({preserve: {code: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('`code`\n\n');
+    done();
+  });
 
-  //it('should render emph', function(done) {
-    //var source = '*emph*';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should remove strong', function(done) {
+    var source = '**strong**';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('strong\n\n');
+    done();
+  });
+
+  it('should preserve strong', function(done) {
+    var source = '**strong**';
+    var writer = new TextRenderer({preserve: {strong: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('**strong**\n\n');
+    done();
+  });
+
+  it('should remove emph', function(done) {
+    var source = '*emph*';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('emph\n\n');
+    done();
+  });
+
+  it('should preserve emph', function(done) {
+    var source = '*emph*';
+    var writer = new TextRenderer({preserve: {emph: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('*emph*\n\n');
+    done();
+  });
 
   //it('should render horizontal rule', function(done) {
     //var source = '---';
