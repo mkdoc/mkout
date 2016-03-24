@@ -215,13 +215,30 @@ describe('text:', function() {
     //done();
   //});
 
-  //it('should render code block', function(done) {
-    //var source = '```javascript foo bar\nfunction(){}\n```';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should indent code block', function(done) {
+    var source = '```javascript foo bar\nfunction(){}\n```';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('  function(){}\n\n');
+    done();
+  });
+
+  it('should indent code block w/ lastLineBlank', function(done) {
+    var source = '```javascript\nfunction(){}\n```\n\n';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('  function(){}\n\n');
+    done();
+  });
+
+  it('should preserve code block', function(done) {
+    var source = '```javascript foo bar\nfunction(){}\n```';
+    var writer = new TextRenderer({preserve: {code_block: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   //it('should render unordered list', function(done) {
     //var source = '* foo\n* bar\n';
