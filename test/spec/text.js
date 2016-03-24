@@ -10,7 +10,6 @@ describe('text:', function() {
   it('should preserve level 1 heading', function(done) {
     var source = '# Heading (1)';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -19,7 +18,6 @@ describe('text:', function() {
     var source = '# Heading (1)';
     var writer = new TextRenderer({preserve: {}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('Heading (1)\n\n');
     done();
   });
@@ -28,7 +26,6 @@ describe('text:', function() {
     var source = '[Commonmark](http://commonmark.org)'
       , expected = 'Commonmark[1]\n\n[1]: http://commonmark.org\n';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql(expected);
     done();
   });
@@ -39,7 +36,6 @@ describe('text:', function() {
       , expected = 'Commonmark[1] Commonmark[1]\n\n'
         + '[1]: http://commonmark.org\n';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql(expected);
     done();
   });
@@ -48,7 +44,6 @@ describe('text:', function() {
     var source = '[Commonmark](http://commonmark.org)';
     var writer = new TextRenderer({preserve: {link: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -57,7 +52,6 @@ describe('text:', function() {
     var source = '[Commonmark](http://commonmark.org)';
     var writer = new TextRenderer({autolink: false});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -65,7 +59,6 @@ describe('text:', function() {
   it('should collapse soft line break', function(done) {
     var source = 'foo\nbar';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('foo bar\n\n');
     done();
   });
@@ -73,7 +66,6 @@ describe('text:', function() {
   it('should collapse soft line break no space injection', function(done) {
     var source = 'foo \nbar';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('foo bar\n\n');
     done();
   });
@@ -82,7 +74,6 @@ describe('text:', function() {
     var source = 'foo\nbar';
     var writer = new TextRenderer({preserve: {softbreak: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -90,7 +81,6 @@ describe('text:', function() {
   it('should render paragraph', function(done) {
     var source = 'Text.';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('Text.\n\n');
     done();
   });
@@ -99,7 +89,6 @@ describe('text:', function() {
     var source = '![Commonmark]'
       + '(http://commonmark.org/images/markdown-mark.png)';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('Commonmark\n\n');
     done();
   });
@@ -109,7 +98,6 @@ describe('text:', function() {
       + '(http://commonmark.org/images/markdown-mark.png)';
     var writer = new TextRenderer({preserve: {image: true}})
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -117,7 +105,6 @@ describe('text:', function() {
   it('should remove html block', function(done) {
     var source = '<p>foo</p>';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('');
     done();
   });
@@ -126,7 +113,6 @@ describe('text:', function() {
     var source = '<p>foo</p>';
     var writer = new TextRenderer({preserve: {html_block: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -134,7 +120,6 @@ describe('text:', function() {
   it('should remove inline html', function(done) {
     var source = '<em>foo</em>';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('foo\n\n');
     done();
   });
@@ -143,7 +128,6 @@ describe('text:', function() {
     var source = '<em>foo</em>';
     var writer = new TextRenderer({preserve: {html_inline: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -151,7 +135,6 @@ describe('text:', function() {
   it('should render linebreak', function(done) {
     var source = 'foo  \nbar\n';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('foo\nbar\n\n');
     done();
   });
@@ -161,7 +144,6 @@ describe('text:', function() {
     var writer = new TextRenderer(
       {linebreak: '  ', preserve: {linebreak: true}})
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -169,7 +151,6 @@ describe('text:', function() {
   it('should remove inline code', function(done) {
     var source = '`code`';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('code\n\n');
     done();
   });
@@ -178,7 +159,6 @@ describe('text:', function() {
     var source = '`code`';
     var writer = new TextRenderer({preserve: {code: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('`code`\n\n');
     done();
   });
@@ -186,7 +166,6 @@ describe('text:', function() {
   it('should remove strong', function(done) {
     var source = '**strong**';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('strong\n\n');
     done();
   });
@@ -195,7 +174,6 @@ describe('text:', function() {
     var source = '**strong**';
     var writer = new TextRenderer({preserve: {strong: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('**strong**\n\n');
     done();
   });
@@ -203,7 +181,6 @@ describe('text:', function() {
   it('should remove emph', function(done) {
     var source = '*emph*';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('emph\n\n');
     done();
   });
@@ -212,7 +189,6 @@ describe('text:', function() {
     var source = '*emph*';
     var writer = new TextRenderer({preserve: {emph: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('*emph*\n\n');
     done();
   });
@@ -220,7 +196,6 @@ describe('text:', function() {
   it('should render thematic break', function(done) {
     var source = '---';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql(writer.hr + '\n\n');
     done();
   });
@@ -229,7 +204,6 @@ describe('text:', function() {
     var source = '---';
     var writer = new TextRenderer({preserve: {thematic_break: true}})
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql(source + '\n\n');
     done();
   });
@@ -237,7 +211,6 @@ describe('text:', function() {
   it('should indent code block', function(done) {
     var source = '```javascript foo bar\nfunction(){}\n```';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('  function(){}\n\n');
     done();
   });
@@ -245,7 +218,6 @@ describe('text:', function() {
   it('should indent code block w/ lastLineBlank', function(done) {
     var source = '```\nCode example\n```\n\n';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('  Code example\n\n');
     done();
   });
@@ -254,31 +226,13 @@ describe('text:', function() {
     var source = '```javascript foo bar\nfunction(){}\n```';
     var writer = new TextRenderer({preserve: {code_block: true}});
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
 
-  //it('should render unordered list', function(done) {
-    //var source = '* foo\n* bar\n';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
-
-  //it('should render ordered list (period)', function(done) {
-    //var source = '1. foo\n2. bar\n';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
-
   it('should indent blockquote', function(done) {
     var source = '> foo';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('  | foo\n\n');
     done();
   });
@@ -286,7 +240,6 @@ describe('text:', function() {
   it('should indent multi-line blockquote', function(done) {
     var source = '> foo\n> bar';
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md).to.eql('  | foo\n  | bar\n\n');
     done();
   });
@@ -295,7 +248,6 @@ describe('text:', function() {
     var source = '> foo';
     var writer = new TextRenderer({preserve: {block_quote: true}})
     var md = writer.render(ast.parse(source));
-    expect(md).to.be.a('string');
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
@@ -308,7 +260,6 @@ describe('text:', function() {
       Node.createNode(Node.CUSTOM_BLOCK, {onEnter: '<foo>', onExit: '</foo>'}));
 
     var md = writer.render(doc);
-    expect(md).to.be.a('string');
     expect(md).to.eql('');
     done();
   });
@@ -327,7 +278,6 @@ describe('text:', function() {
 
     var writer = new TextRenderer({preserve: {custom_block: true}});
     var md = writer.render(doc);
-    expect(md).to.be.a('string');
     expect(md).to.eql(expected);
     done();
   });
@@ -341,7 +291,6 @@ describe('text:', function() {
         Node.CUSTOM_INLINE, {onEnter: '<foo>', onExit: '</foo>'}));
 
     var md = writer.render(doc);
-    expect(md).to.be.a('string');
     expect(md).to.eql('');
     done();
   });
@@ -360,7 +309,6 @@ describe('text:', function() {
 
     var writer = new TextRenderer({preserve: {custom_inline: true}});
     var md = writer.render(doc);
-    expect(md).to.be.a('string');
     expect(md).to.eql(expected);
     done();
   });
