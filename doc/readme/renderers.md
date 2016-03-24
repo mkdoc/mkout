@@ -8,7 +8,7 @@ The markdown renderer renders all basic markdown types as expected however it is
 
 ### Text
 
-The text renderer inherits from the markdown renderer so you can choose which types to preserve as markdown, by default headings and lists are preserved. Headings are preserved to maintain the document structure but you may disable rendering headings as markdown. List rendering is always performed using the underlying markdown renderer.
+The text renderer inherits from the markdown renderer so you can choose which types to preserve as markdown, by default headings and lists are preserved. Headings are preserved to maintain the document structure but you may disable them; list rendering is always performed using the underlying markdown renderer.
 
 Block and inline HTML is normalized to text but may be preserved.
 
