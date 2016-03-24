@@ -140,6 +140,7 @@ describe('markdown:', function() {
     var source = '* foo\n* bar\n';
     var md = writer.render(ast.parse(source));
     expect(md).to.be.a('string');
+    console.dir(md);
     expect(md.indexOf(source)).to.eql(0);
     done();
   });
