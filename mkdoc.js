@@ -3,7 +3,14 @@ var mk = require('mktask');
 // @task api build the api docs.
 function api(cb) {
   mk.api(
-    ['index.js'],
+    [
+      'index.js',
+      'lib/json.js',
+      'lib/man.js',
+      'lib/markdown.js',
+      'lib/text.js',
+      'lib/yaml.js'
+    ],
     {
       stream: mk.dest('API.md'),
       heading: 'API'
