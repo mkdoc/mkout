@@ -211,8 +211,16 @@ describe('text:', function() {
     var source = '---';
     var md = writer.render(ast.parse(source));
     expect(md).to.be.a('string');
-    console.dir(md);
-    //expect(md.indexOf(source)).to.eql(0);
+    expect(md).to.eql(writer.hr + '\n\n');
+    done();
+  });
+
+  it('should preserve thematic break', function(done) {
+    var source = '---';
+    var writer = new TextRenderer({preserve: {thematic_break: true}})
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql(source + '\n\n');
     done();
   });
 
