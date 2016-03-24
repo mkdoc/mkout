@@ -4,16 +4,18 @@ var expect = require('chai').expect
   , yaml = require('js-yaml');
 
 function assert(yml, done) {
+  var docs = [];
   expect(yml).to.be.a('string');
   yaml.safeLoadAll(yml, function(doc) {
     // sends null document when no more docs to process
     if(doc !== null) {
+      docs.push(doc);
       //console.dir(doc);
       expect(doc).to.be.an('array');
       expect(doc[0]).to.be.an('object');
       expect(doc[0].document).to.be.an('array');
     }else{
-      done();
+      done(null, docs);
     }
   });
 }
@@ -143,5 +145,27 @@ describe('yaml full:', function() {
     var yml = writer.render(ast.parse(source));
     assert(yml, done);
   });
+
+  it('should render array list', function(done) {
+    var source = ''
+      , doc = ast.parse(source);
+
+    // the YAML renderer supports arrays but the AST
+    // only currently has a single `sourcepos` array which
+    // is treated as a special short form array, this tests
+    // a code path for long form arrays, note that we must 
+    // use a variable name that will be serialized in this case
+    // we mutate the heading `level` to test the code path
+    doc.level = [1,[2],3];
+
+    var yml = writer.render(doc);
+    assert(yml, function(err, docs) {
+      var res = docs[0]
+        , level = res[0].document[0].properties.level;
+      expect(level).to.eql([1,[2],3]);
+      done();
+    });
+  });
+
 
 });
