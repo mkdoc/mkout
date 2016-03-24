@@ -161,6 +161,14 @@ describe('markdown:', function() {
     done();
   });
 
+  it('should render nested compact list', function(done) {
+    var source = '' + fs.readFileSync(
+      'test/fixtures/nested-compact-list.md');
+    var md = writer.render(ast.parse(source));
+    expect(md).to.eql(source);
+    done();
+  });
+
   it('should render nested list w/ last line blank', function(done) {
     var source = '' + fs.readFileSync(
       'test/fixtures/nested-list-last-line-blank.md');
