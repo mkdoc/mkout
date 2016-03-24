@@ -29,19 +29,5 @@ function readme(cb) {
     .on('finish', cb);
 }
 
-// @task bug build the bug file.
-function bug(cb) {
-  mk.doc('exec-bug.md')
-    .pipe(mk.pi())
-    .pipe(mk.ref())
-    .pipe(mk.abs())
-    .pipe(mk.msg())
-    .pipe(mk.out())
-    .pipe(mk.dest('BUG.md'))
-    .on('finish', cb);
-}
-
-
-mk.task(bug);
 mk.task(api);
 mk.task(readme);

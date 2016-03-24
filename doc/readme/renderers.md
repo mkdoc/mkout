@@ -12,13 +12,17 @@ The text renderer inherits from the markdown renderer so you can choose which ty
 
 Block and inline HTML is normalized to text but may be preserved.
 
-Links are converted to indexed references in the form `example[1]` and the appropriate references are appended to the document: `[1]: http://example.com`. Duplicate link destinations are resolved.
+Links are converted to indexed references in the form `example[1]` and the appropriate references are appended to the document: `[1]:http://example.com`. Duplicate link destinations are resolved.
 
 If you wanted to preserve some inline elements in addition to headings and lists you could pass the options:
 
 ```javascript
 {preserve:{heading: true, code: true, emph: true, strong: true}}
 ```
+
+Soft line breaks are removed but you can preserve them. Thematic breaks (`---`) are rendered as a series of 80 hyphens which may be customised.
+
+Code blocks are indented with two spaces, the info string if present is not preserved.
 
 ### JSON
 
@@ -34,4 +38,4 @@ Whilst it would be possible to recreate a node tree from a YAML document it is o
 
 Compact output for a simple document:
 
-<? @source {yaml} ../sample.yml ?>
+<? @exec {yaml} mkcat test/fixtures/paragraph.md | mkout -y ?>
