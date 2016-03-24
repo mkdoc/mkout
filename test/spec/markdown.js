@@ -160,6 +160,58 @@ describe('markdown:', function() {
     done();
   });
 
+  it('should render link references', function(done) {
+    var source = ''
+      , expected = '[example]: http://example.com "Example Website"'
+      , doc = ast.parse(source)
+      , custom = Node.createNode(
+          Node.LINK, {
+            _linkType: 'ref',
+            title: 'Example Website',
+            destination: 'http://example.com'});
+
+    custom.appendChild(
+      Node.createNode(Node.TEXT, {literal: 'example'}))
+
+    doc.appendChild(custom);
+
+    var md = writer.render(doc);
+    expect(md).to.eql(expected);
+    done();
+  });
+
+  it('should render multiple link references', function(done) {
+    var source = ''
+      , expected = '[a]: http://a.com\n[b]: http://b.com'
+      , doc = ast.parse(source)
+      , a
+      , b;
+
+    a = Node.createNode(
+      Node.LINK, {
+        _linkType: 'ref',
+        destination: 'http://a.com'});
+
+    a.appendChild(
+      Node.createNode(Node.TEXT, {literal: 'a'}))
+
+    b = Node.createNode(
+      Node.LINK, {
+        _linkType: 'ref',
+        destination: 'http://b.com'});
+
+    b.appendChild(
+      Node.createNode(Node.TEXT, {literal: 'b'}))
+
+    doc.appendChild(a);
+    doc.appendChild(b);
+
+    var md = writer.render(doc);
+    expect(md).to.eql(expected);
+    done();
+  });
+
+
   it('should render custom block w/ no data', function(done) {
     var source = ''
       , expected = 'bar'
