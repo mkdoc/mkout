@@ -273,6 +273,14 @@ describe('text:', function() {
     done();
   });
 
+  it('should indent multi-line blockquote', function(done) {
+    var source = '> foo\n> bar';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('  | foo\n  | bar\n\n');
+    done();
+  });
+
   it('should preserve blockquote', function(done) {
     var source = '> foo';
     var writer = new TextRenderer({preserve: {block_quote: true}})

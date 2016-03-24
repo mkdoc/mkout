@@ -85,8 +85,9 @@ mkout [options]
 
 Render an abstract syntax tree.
 
-  -m, --html           Set output renderer to HTML
+  -H, --html           Set output renderer to HTML
   -x, --xml            Set output renderer to XML
+  -m, --man            Set output renderer to MAN
   -y, --yaml           Set output renderer to YAML
   -Y, --yaml-full      Do not compact YAML output
   -t, --text           Set output renderer to TEXT
@@ -145,6 +146,16 @@ But be careful the tree can be very deep so it is not recommended you set
 
 * `indent` Number=0 number of spaces to indent the JSON.
 
+### ManRenderer
+
+```javascript
+new ManRenderer([opts])
+```
+
+Renders an abstract syntax tree to a ROFF man page.
+
+* `opts` Object processing options.
+
 ### MarkdownRenderer
 
 ```javascript
@@ -167,14 +178,19 @@ new TextRenderer([opts])
 
 Renders an abstract syntax tree to a plain text view.
 
-By default this implementation preserves the `heading`, `list` and `item`
-types as markdown - all other markdown formatting is removed.
+By default this implementation preserves the `heading` type as markdown
+so that the structure of the document is maintained.
+
+With the exception of the PARAGRAPH, LIST and ITEM node types all
+other markdown formatting is removed. For the aforementioned exceptions
+setting a `preserve` option will have no effect as they are always
+preserved according to the rules for markdown rendering.
 
 If you wish to preserve some other aspects of the markdown formatting, you
 can specify options such as:
 
 ```javascript
-{preserve:{heading: true, list: true, item: true, emph: true}}
+{preserve:{heading: true, emph: true}}
 ```
 
 Which would preserve emphasis in addition to the default formatting that
@@ -188,7 +204,10 @@ the empty object:
 Code blocks (when not preserved) are indented by the whitespace specified
 with the `indent` option, default is two spaces.
 
-Unless `autolinks` are disabled links are removed and appended to the end
+Block quotes are indented according to `indent` and then prefixed with a
+vertical pipe (|), you can change this prefix with the `blockquote` option.
+
+Unless `autolink` is disabled links are removed and appended to the end
 of the document such that the input:
 
 ```markdown
@@ -202,6 +221,12 @@ Commonmark[1]
 
 [1]: http://commomark.org
 ```
+
+Soft line breaks are removed unless preserved and a single space is
+injected when necessary.
+
+Thematic breaks are rendered as the hyphen (-) repeated 80 times. You may
+change this output with the `hr` option.
 
 * `opts` Object processing options.
 
