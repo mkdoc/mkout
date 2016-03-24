@@ -122,6 +122,12 @@ describe('yaml full:', function() {
     assert(yml, done);
   });
 
+  it('should render code block w/ lastLineBlank', function(done) {
+    var source = '```\nCode example\n```\n\n';
+    var yml = writer.render(ast.parse(source));
+    assert(yml, done);
+  });
+
   it('should render unordered list', function(done) {
     var source = '* foo\n* bar\n';
     var yml = writer.render(ast.parse(source));
