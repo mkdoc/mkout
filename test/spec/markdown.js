@@ -23,6 +23,15 @@ describe('markdown:', function() {
     done();
   });
 
+  it('should render level 2 setext heading', function(done) {
+    var source = 'Heading\nthat spans\nmultiple lines\n---\n\n'
+      , expected = 'Heading\nthat spans\nmultiple lines\n--------------\n\n';
+    var writer  = new MarkdownRenderer({setext: true})
+    var md = writer.render(ast.parse(source));
+    expect(md).to.eql(expected);
+    done();
+  });
+
   it('should render level 6 heading', function(done) {
     var source = '###### Heading (6)';
     var md = writer.render(ast.parse(source));
