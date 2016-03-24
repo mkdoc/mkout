@@ -1,5 +1,6 @@
 var expect = require('chai').expect
   , ast = require('mkast')
+  , Node = ast.Node
   , TextRenderer = require('../../lib/text');
 
 describe('text:', function() {
@@ -113,21 +114,39 @@ describe('text:', function() {
     done();
   });
 
-  //it('should render html block', function(done) {
-    //var source = '<p>foo</p>';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should remove html block', function(done) {
+    var source = '<p>foo</p>';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('');
+    done();
+  });
 
-  //it('should render inline html', function(done) {
-    //var source = '<em>foo</em>';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should preserve html block', function(done) {
+    var source = '<p>foo</p>';
+    var writer = new TextRenderer({preserve: {html_block: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should remove inline html', function(done) {
+    var source = '<em>foo</em>';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('foo\n\n');
+    done();
+  });
+
+  it('should preserve inline html', function(done) {
+    var source = '<em>foo</em>';
+    var writer = new TextRenderer({preserve: {html_inline: true}});
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   ////it('should render hard line break', function(done) {
     ////var source = 'foo  \nbar\n';
@@ -228,12 +247,69 @@ describe('text:', function() {
     //done();
   //});
 
-  //it('should render custom block', function(done) {
-    //var source = '<component>\nfoo\n</component>';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
-    //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+  it('should remove custom block', function(done) {
+    var source = ''
+      , doc = ast.parse(source);
+
+    doc.appendChild(
+      Node.createNode(Node.CUSTOM_BLOCK, {onEnter: '<foo>', onExit: '</foo>'}));
+
+    var md = writer.render(doc);
+    expect(md).to.be.a('string');
+    expect(md).to.eql('');
+    done();
+  });
+
+  it('should preserve custom block', function(done) {
+    var source = ''
+      , expected = '<foo>bar</foo>\n\n'
+      , doc = ast.parse(source)
+      , custom = Node.createNode(
+          Node.CUSTOM_BLOCK, {onEnter: '<foo>', onExit: '</foo>'});
+
+    custom.appendChild(
+      Node.createNode(Node.TEXT, {literal: 'bar'}))
+
+    doc.appendChild(custom);
+
+    var writer = new TextRenderer({preserve: {custom_block: true}});
+    var md = writer.render(doc);
+    expect(md).to.be.a('string');
+    expect(md).to.eql(expected);
+    done();
+  });
+
+  it('should remove custom inline', function(done) {
+    var source = ''
+      , doc = ast.parse(source);
+
+    doc.appendChild(
+      Node.createNode(
+        Node.CUSTOM_INLINE, {onEnter: '<foo>', onExit: '</foo>'}));
+
+    var md = writer.render(doc);
+    expect(md).to.be.a('string');
+    expect(md).to.eql('');
+    done();
+  });
+
+  it('should preserve custom inline', function(done) {
+    var source = ''
+      , expected = '<foo>bar</foo>'
+      , doc = ast.parse(source)
+      , custom = Node.createNode(
+          Node.CUSTOM_INLINE, {onEnter: '<foo>', onExit: '</foo>'});
+
+    custom.appendChild(
+      Node.createNode(Node.TEXT, {literal: 'bar'}))
+
+    doc.appendChild(custom);
+
+    var writer = new TextRenderer({preserve: {custom_inline: true}});
+    var md = writer.render(doc);
+    expect(md).to.be.a('string');
+    expect(md).to.eql(expected);
+    done();
+  });
 
 });
