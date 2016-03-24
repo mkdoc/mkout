@@ -70,7 +70,7 @@ describe('text:', function() {
     done();
   });
 
-  it('should collapse soft line break without space injection', function(done) {
+  it('should collapse soft line break no space injection', function(done) {
     var source = 'foo \nbar';
     var md = writer.render(ast.parse(source));
     expect(md).to.be.a('string');
@@ -148,13 +148,23 @@ describe('text:', function() {
     done();
   });
 
-  ////it('should render hard line break', function(done) {
-    ////var source = 'foo  \nbar\n';
-    ////var md = writer.render(ast.parse(source);
-    ////expect(md).to.be.a('string');
-    ////expect(md.indexOf(source)).to.eql(0);
-    ////done();
-  ////});
+  it('should render linebreak', function(done) {
+    var source = 'foo  \nbar\n';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md).to.eql('foo\nbar\n\n');
+    done();
+  });
+
+  it('should preserve linebreak', function(done) {
+    var source = 'foo  \nbar\n';
+    var writer = new TextRenderer(
+      {linebreak: '  ', preserve: {linebreak: true}})
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
 
   it('should remove inline code', function(done) {
     var source = '`code`';
