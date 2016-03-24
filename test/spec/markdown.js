@@ -133,6 +133,13 @@ describe('markdown:', function() {
     done();
   });
 
+  it('should render code block without info string', function(done) {
+    var source = '```\nCode example\n```';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.eql(source + '\n\n');
+    done();
+  });
+
   it('should render code block', function(done) {
     var source = '```javascript foo bar\nfunction(){}\n```';
     var md = writer.render(ast.parse(source));
