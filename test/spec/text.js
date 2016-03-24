@@ -207,13 +207,14 @@ describe('text:', function() {
     done();
   });
 
-  //it('should render horizontal rule', function(done) {
-    //var source = '---';
-    //var md = writer.render(ast.parse(source));
-    //expect(md).to.be.a('string');
+  it('should render thematic break', function(done) {
+    var source = '---';
+    var md = writer.render(ast.parse(source));
+    expect(md).to.be.a('string');
+    console.dir(md);
     //expect(md.indexOf(source)).to.eql(0);
-    //done();
-  //});
+    done();
+  });
 
   it('should indent code block', function(done) {
     var source = '```javascript foo bar\nfunction(){}\n```';
@@ -224,10 +225,10 @@ describe('text:', function() {
   });
 
   it('should indent code block w/ lastLineBlank', function(done) {
-    var source = '```javascript\nfunction(){}\n```\n\n';
+    var source = '```\nCode example\n```\n\n';
     var md = writer.render(ast.parse(source));
     expect(md).to.be.a('string');
-    expect(md).to.eql('  function(){}\n\n');
+    expect(md).to.eql('  Code example\n\n');
     done();
   });
 
