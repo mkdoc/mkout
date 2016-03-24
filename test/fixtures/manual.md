@@ -40,7 +40,11 @@ Block quotes are indented:
 
 ## Thematic Breaks
 
-Thematic breaks are not a concept in man page rendering and are ignored.
+Thematic breaks are rendered as a centred horizontal line:
+
+---
+
+Using the custom `.hr` macro, currently the width is fixed because the `.l` register returns the length for A4 not for the current device. Later, we can try to update this to use the device line length.
 
 ## HTML
 
