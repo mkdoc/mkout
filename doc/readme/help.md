@@ -1,4 +1,4 @@
 ## Help
 
-<?@exec {} mkout -h ?>
+<? @exec {} mkout -h ?>
 

@@ -31,3 +31,7 @@ Circular references are resolved and the document has enough information to recr
 The YAML renderer is designed to provide a compact view of the tree which is easy to read but can also include the node properties for an extended view of the document.
 
 Whilst it would be possible to recreate a node tree from a YAML document it is optimized for legibility over processing; use the JSON renderer for serialization requirements.
+
+Compact output for a simple document:
+
+<? @source {yaml} ../sample.yml ?>
