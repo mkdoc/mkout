@@ -1,4 +1,5 @@
 var expect = require('chai').expect
+  , fs = require('fs')
   , ast = require('mkast')
   , Node = ast.Node
   , MarkdownRenderer = require('../../lib/markdown');
@@ -150,6 +151,13 @@ describe('markdown:', function() {
     var source = '1. foo\n2. bar\n';
     var md = writer.render(ast.parse(source));
     expect(md.indexOf(source)).to.eql(0);
+    done();
+  });
+
+  it('should render nested list', function(done) {
+    var source = '' + fs.readFileSync('test/fixtures/nested-list.md');
+    var md = writer.render(ast.parse(source));
+    expect(md).to.eql(source);
     done();
   });
 
