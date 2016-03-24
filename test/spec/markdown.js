@@ -148,16 +148,16 @@ describe('markdown:', function() {
   });
 
   it('should render unordered list', function(done) {
-    var source = '* foo\n* bar\n';
+    var source = '* foo\n* bar\n\n';
     var md = writer.render(ast.parse(source));
-    expect(md.indexOf(source)).to.eql(0);
+    expect(md).to.eql(source);
     done();
   });
 
   it('should render ordered list (period)', function(done) {
     var source = '1. foo\n2. bar\n';
     var md = writer.render(ast.parse(source));
-    expect(md.indexOf(source)).to.eql(0);
+    expect(md).to.eql(source);
     done();
   });
 

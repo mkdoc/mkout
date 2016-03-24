@@ -78,9 +78,15 @@ Pass through the input newline-delimited JSON:
 mkcat README.md | mkout --noop
 ```
 
+## Renderer Implementation
+
+This section describes the handling of the various [commonmark][] types.
+
+### JSON
+
 ## Help
 
-```null
+```
 mkout [options]
 
 Render an abstract syntax tree.
@@ -280,7 +286,6 @@ inspect the node properties disable `compact`:
 #### Options
 
 * `compact` Boolean=true create compact YAML documents.
-
 ## License
 
 MIT
