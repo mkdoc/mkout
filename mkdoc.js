@@ -1,22 +1,5 @@
 var mk = require('mktask');
 
-// @task api build the api docs.
-function api(cb) {
-  mk.api(
-    [
-      'index.js',
-      'lib/json.js',
-      'lib/man.js',
-      'lib/markdown.js',
-      'lib/text.js',
-      'lib/yaml.js'
-    ],
-    {
-      stream: mk.dest('API.md'),
-      heading: 'API'
-    }, cb);
-}
-
 // @task readme build the readme file.
 function readme(cb) {
   mk.doc('doc/readme.md')
@@ -29,5 +12,4 @@ function readme(cb) {
     .on('finish', cb);
 }
 
-mk.task(api);
 mk.task(readme);

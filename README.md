@@ -196,6 +196,49 @@ But be careful the tree can be very deep so it is not recommended you set
 
 * `indent` Number=0 number of spaces to indent the JSON.
 
+### Links
+
+```javascript
+new Links()
+```
+
+Manages a list of links and their destinations in a linked list.
+
+The `links` array is a list of nodes and `destinations` maps link
+destinations to their index in the array.
+
+### .add
+
+```javascript
+Links.prototype.add(node)
+```
+
+Add a link node to this collection of links.
+
+Returns a boolean indicating whether the link was added.
+
+* `node` Object the link node.
+
+### .list
+
+```javascript
+Links.prototype.list([newline])
+```
+
+Retrieves a list of link references.
+
+Returns list of link references.
+
+* `newline` String the newline character to use.
+
+### .reset
+
+```javascript
+Links.prototype.reset()
+```
+
+Resets this instance so it does not contain any links.
+
 ### ManRenderer
 
 ```javascript
@@ -337,7 +380,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on March 25, 2016
+*Created by [mkdoc](https://github.com/mkdoc/mkdoc) on March 25, 2016*
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org
