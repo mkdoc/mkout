@@ -1,6 +1,6 @@
 ## Renderer Implementation
 
-This section briefly describes the handling of the various [commonmark][] types, see the [api docs](/API.md) for more detail.
+This section briefly describes the handling of the various [commonmark][] types, see the [api docs](#api) for more detail.
 
 ### Markdown
 
