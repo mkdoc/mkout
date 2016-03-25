@@ -337,7 +337,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc).
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on March 25, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org
