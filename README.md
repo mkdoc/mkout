@@ -135,6 +135,7 @@ mkout [options]
 
 Render an abstract syntax tree.
 
+  -o, --output=[FILE]  Write output to FILE (default: stdout)
   -H, --html           Set output renderer to HTML
   -x, --xml            Set output renderer to XML
   -m, --man            Set output renderer to MAN
@@ -143,7 +144,6 @@ Render an abstract syntax tree.
   -t, --text           Set output renderer to TEXT
   -j, --json           Set output renderer to JSON
   -n, --noop           Pass through input JSON
-  -o, --output=[FILE]  Write output to FILE (default: stdout)
   -h, --help           Display this help and exit
   --version            Print the version and exit
 
