@@ -57,38 +57,38 @@ function out(opts, cb) {
   opts.type = opts.type || 'markdown';
   opts.render = opts.render || {};
 
-  if(opts.type === NOOP) {
-    opts.input.pipe(opts.output);
-    return opts.output; 
-  }
-
-  if(!types[opts.type]) {
-    return cb(new Error('unknown output type: ' + opts.type)); 
-  }
-
-  var Type = load(opts.type)
-    , renderer = new Type(opts.render)
-    , deserializer
-    , render = new RenderStream({renderer: renderer});
-
-  deserializer = deserialize(opts.input);
-
-  if(opts.cli !== true) {
-    return render;
-  }
-
-  // handle output stream
-  if(opts.output) {
-    render.pipe(opts.output); 
-  }
 
   function writer(doc) {
     opts.output.write(renderer.render(doc));
   }
 
-  deserializer
-    .on('eof', writer)
-    .on('fragment', writer);
+  if(opts.type === NOOP) {
+    opts.input.pipe(opts.output);
+  }else{
+    if(!types[opts.type]) {
+      return cb(new Error('unknown output type: ' + opts.type)); 
+    }
+
+    var Type = load(opts.type)
+      , renderer = new Type(opts.render)
+      , deserializer
+      , render = new RenderStream({renderer: renderer});
+
+    deserializer = deserialize(opts.input);
+
+    if(opts.cli !== true) {
+      return render;
+    }
+
+    // handle output stream
+    if(opts.output) {
+      render.pipe(opts.output); 
+    }
+
+    deserializer
+      .on('eof', writer)
+      .on('fragment', writer);
+  }
 
   if(cb) {
     opts.output
