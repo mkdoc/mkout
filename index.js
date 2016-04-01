@@ -85,6 +85,14 @@ function out(opts, cb) {
       render.pipe(opts.output); 
     }
 
+    // ensure callback is called when the input stream ends
+    if(opts.input && opts.output && opts.output !== process.stdout) {
+      opts.input.once('end', function() {
+        // close the output stream when the input ends
+        opts.output.end();
+      })
+    }
+
     deserializer
       .on('eof', writer)
       .on('fragment', writer);
