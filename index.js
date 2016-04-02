@@ -112,4 +112,9 @@ out.types = types;
 
 out.NOOP = NOOP;
 
+// assign type constants
+Object.keys(types).forEach(function(k) {
+  out[k.toUpperCase()] = k;
+})
+
 module.exports = out;
