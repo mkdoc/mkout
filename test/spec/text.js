@@ -9,6 +9,7 @@ describe('text:', function() {
 
   it('should preserve level 1 heading', function(done) {
     var source = '# Heading (1)';
+    var writer = new TextRenderer({preserve: {heading: true}});
     var md = writer.render(ast.parse(source));
     expect(md.indexOf(source)).to.eql(0);
     done();
@@ -211,14 +212,14 @@ describe('text:', function() {
   it('should indent code block', function(done) {
     var source = '```javascript foo bar\nfunction(){}\n```';
     var md = writer.render(ast.parse(source));
-    expect(md).to.eql('  function(){}\n\n');
+    expect(md).to.eql('    function(){}\n\n');
     done();
   });
 
   it('should indent code block w/ lastLineBlank', function(done) {
     var source = '```\nCode example\n```\n\n';
     var md = writer.render(ast.parse(source));
-    expect(md).to.eql('  Code example\n\n');
+    expect(md).to.eql('    Code example\n\n');
     done();
   });
 
@@ -233,14 +234,14 @@ describe('text:', function() {
   it('should indent blockquote', function(done) {
     var source = '> foo';
     var md = writer.render(ast.parse(source));
-    expect(md).to.eql('  | foo\n\n');
+    expect(md).to.eql('    | foo\n\n');
     done();
   });
 
   it('should indent multi-line blockquote', function(done) {
     var source = '> foo\n> bar';
     var md = writer.render(ast.parse(source));
-    expect(md).to.eql('  | foo\n  | bar\n\n');
+    expect(md).to.eql('    | foo\n    | bar\n\n');
     done();
   });
 
