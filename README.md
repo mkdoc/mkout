@@ -131,23 +131,22 @@ Compact output for a simple document:
 ## Help
 
 ```
-mkout [options]
+Usage: mkout [options]
 
-Render an abstract syntax tree.
+Options
+  -o, --output=[FILE]     Write output to FILE (default: stdout)
+  -H, --html              Set output renderer to HTML
+  -j, --json              Set output renderer to JSON
+  -m, --man               Set output renderer to MAN
+  -t, --text              Set output renderer to TEXT
+  -x, --xml               Set output renderer to XML
+  -y, --yaml              Set output renderer to YAML
+  -Y, --yaml-full         Do not compact YAML output
+  -n, --noop              Pass through input JSON
+  -h, --help              Display help and exit
+  --version               Print the version and exit
 
-  -o, --output=[FILE]  Write output to FILE (default: stdout)
-  -H, --html           Set output renderer to HTML
-  -j, --json           Set output renderer to JSON
-  -m, --man            Set output renderer to MAN
-  -t, --text           Set output renderer to TEXT
-  -x, --xml            Set output renderer to XML
-  -y, --yaml           Set output renderer to YAML
-  -Y, --yaml-full      Do not compact YAML output
-  -n, --noop           Pass through input JSON
-  -h, --help           Display this help and exit
-  --version            Print the version and exit
-
-Report bugs to https://github.com/mkdoc/mkout/issues
+mkout@1.0.30
 ```
 
 ## API
@@ -288,37 +287,26 @@ new TextRenderer([opts])
 
 Renders an abstract syntax tree to a plain text view.
 
-By default this implementation preserves the `heading` type as markdown
-so that the structure of the document is maintained.
-
 With the exception of the PARAGRAPH, LIST and ITEM node types all
-other markdown formatting is removed. For the aforementioned exceptions
-setting a `preserve` option will have no effect as they are always
-preserved according to the rules for markdown rendering.
+other markdown formatting is removed.
 
 If you wish to preserve some other aspects of the markdown formatting, you
 can specify options such as:
 
 ```javascript
-{preserve:{heading: true, emph: true}}
+{preserve:{emph: true}}
 ```
 
-Which would preserve emphasis in addition to the default formatting that
-is preserved. If you don't want to preserve any markdown formatting pass
-the empty object:
-
-```javascript
-{preserve: {}}
-```
+Which would preserve emphasis as markdown.
 
 Code blocks (when not preserved) are indented by the whitespace specified
-with the `indent` option, default is two spaces.
+with the `indent` option, default is four spaces.
 
 Block quotes are indented according to `indent` and then prefixed with a
-vertical pipe (|), you can change this prefix with the `blockquote` option.
+vertical pipe (|), you can change this prefix with the `quote` option.
 
-Unless `autolink` is disabled links are removed and appended to the end
-of the document such that the input:
+Unless `autolink` is disabled (or links are preserved) links are
+removed and appended to the end of the document such that the input:
 
 ```markdown
 [Commonmark](http://commonmark.org)
@@ -338,8 +326,8 @@ injected when necessary.
 Thematic breaks are rendered as the hyphen (-) repeated 80 times. You may
 change this output with the `hr` option.
 
-HTML is normalized to text unless the `html` option is given in which case
-it is passed through untouched.
+HTML is normalized to text unless the `html_block` or `html_inline`
+elements are preserved.
 
 * `opts` Object processing options.
 
@@ -380,7 +368,7 @@ MIT
 
 ---
 
-*Created by [mkdoc](https://github.com/mkdoc/mkdoc) on March 25, 2016*
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 5, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org
