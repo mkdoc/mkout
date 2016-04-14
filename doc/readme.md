@@ -8,6 +8,10 @@ Output renderers for [commonmark][].
 
 <? @include {=readme} install.md ?>
 
+***
+<!-- @toc -->
+***
+
 ## Usage
 
 Create the stream and write a [commonmark][] document:

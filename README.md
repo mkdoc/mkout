@@ -16,6 +16,39 @@ npm i mkout --save
 
 For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
+---
+
+- [Install](#install)
+- [Usage](#usage)
+- [Example](#example)
+- [Renderer Implementation](#renderer-implementation)
+  - [Markdown](#markdown)
+  - [Text](#text)
+  - [JSON](#json)
+  - [YAML](#yaml)
+- [Help](#help)
+  - [mkman](#mkman)
+  - [mktext](#mktext)
+- [API](#api)
+  - [out](#out)
+    - [Options](#options)
+  - [JsonRenderer](#jsonrenderer)
+    - [Options](#options-1)
+  - [Links](#links)
+  - [.add](#add)
+  - [.list](#list)
+  - [.reset](#reset)
+  - [ManRenderer](#manrenderer)
+  - [MarkdownRenderer](#markdownrenderer)
+  - [normalize](#normalize)
+  - [TextRenderer](#textrenderer)
+    - [Options](#options-2)
+  - [YamlRenderer](#yamlrenderer)
+    - [Options](#options-3)
+- [License](#license)
+
+---
+
 ## Usage
 
 Create the stream and write a [commonmark][] document:
