@@ -146,7 +146,54 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkout@1.0.30
+mkout@1.0.31
+```
+
+### mkman
+
+```
+Usage: mkman [options]
+
+Options
+  -t, --title=[VAL]       Set the page title (default: UNTITLED)
+  -s, --section=[NUM]     Set the section number (default: 1)
+  -i, --inline=[VAL]      Inline code rendering style (default: strong)
+  -l, --locale=[VAL]      Locale for automatic date generation (default: en-gb)
+  -d, --date=[VAL]        Use specific date
+  -h, --help              Display help and exit
+  --version               Print the version and exit
+
+mkout@1.0.31
+```
+
+### mktext
+
+```
+Usage: mktext [options]
+
+Options
+  -i, --indent=[NUM]      Number of spaces to indent code blocks and block
+                          quotes (default: 4)
+  -q, --quote=[VAL]       Character used to prefix block quotes
+  -e, --emph              Preserve emph as markdown
+  -s, --strong            Preserve strong as markdown
+  -c, --code              Preserve inline code as markdown
+  -l, --link              Preserve links as markdown
+  -t, --thematic-break    Preserve thematic break as markdown
+  -I, --image             Preserve image as markdown
+  -C, --code-block        Preserve code block as markdown
+  -B, --block-quote       Preserve block quote as markdown
+  -H, --heading           Preserve heading as markdown
+  -S, --softbreak         Preserve softbreak as markdown
+  -L, --linebreak         Preserve linebreak as markdown
+  --html-inline           Preserve inline html as markdown
+  --html-block            Preserve html block as markdown
+  --custom-inline         Preserve custom inline as markdown
+  --custom-block          Preserve custom block as markdown
+  -h, --help              Display help and exit
+  --version               Print the version and exit
+
+mkout@1.0.31
 ```
 
 ## API
@@ -368,7 +415,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 5, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 14, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org
