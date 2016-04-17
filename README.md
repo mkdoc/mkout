@@ -29,6 +29,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 - [Help](#help)
   - [mkman](#mkman)
   - [mktext](#mktext)
+  - [mkhtml](#mkhtml)
 - [API](#api)
   - [out](#out)
     - [Options](#options)
@@ -222,6 +223,18 @@ Options
   --html-block            Preserve html block as markdown
   --custom-inline         Preserve custom inline as markdown
   --custom-block          Preserve custom block as markdown
+  -h, --help              Display help and exit
+  --version               Print the version and exit
+
+mkout@1.0.31
+```
+
+### mkhtml
+
+```
+Usage: mkhtml [options]
+
+Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
@@ -447,7 +460,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 14, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 17, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org

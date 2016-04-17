@@ -9,3 +9,8 @@
 ### mktext
 
 <? @exec {} mktext -h ?>
+
+### mkhtml
+
+<? @exec {} mkhtml -h ?>
+
