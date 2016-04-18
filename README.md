@@ -167,6 +167,8 @@ Compact output for a simple document:
 ```
 Usage: mkout [options]
 
+  Render to various output formats.
+
 Options
   -o, --output=[FILE]     Write output to FILE (default: stdout)
   -H, --html              Set output renderer to HTML
@@ -180,13 +182,15 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkout@1.0.31
+mkout@1.0.32
 ```
 
 ### mkman
 
 ```
 Usage: mkman [options]
+
+  Render to troff man page.
 
 Options
   -t, --title=[VAL]       Set the page title (default: UNTITLED)
@@ -197,13 +201,15 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkout@1.0.31
+mkout@1.0.32
 ```
 
 ### mktext
 
 ```
 Usage: mktext [options]
+
+  Render to plain text.
 
 Options
   -i, --indent=[NUM]      Code block and block quote indentation (default: 4)
@@ -226,7 +232,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkout@1.0.31
+mkout@1.0.32
 ```
 
 ### mkhtml
@@ -234,11 +240,13 @@ mkout@1.0.31
 ```
 Usage: mkhtml [options]
 
+  Render to HTML page.
+
 Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkout@1.0.31
+mkout@1.0.32
 ```
 
 ## API
@@ -460,7 +468,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 17, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [node]: http://nodejs.org
