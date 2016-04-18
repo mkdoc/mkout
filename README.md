@@ -8,7 +8,7 @@
 
 Output renderers for [commonmark][].
 
-## 
+## Install
 
 ```
 npm i mkout --save
@@ -51,7 +51,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ---
 
-## 
+## Usage
 
 Create the stream and write a [commonmark][] document:
 
@@ -63,7 +63,7 @@ ast.src('# Heading')
   .pipe(process.stdout);
 ```
 
-## 
+## Example
 
 Print as markdown:
 
@@ -113,15 +113,15 @@ Pass through the input newline-delimited JSON:
 mkcat README.md | mkout --noop
 ```
 
-## 
+## Renderer Implementation
 
 This section briefly describes the handling of the various [commonmark][] types, see the [api docs](#api) for more detail.
 
-### 
+### Markdown
 
 The markdown renderer renders all basic markdown types as expected however it is not yet [commonmark][] compliant which is work in progress.
 
-### 
+### Text
 
 The text renderer inherits from the markdown renderer so you can choose which types to preserve as markdown, by default headings and lists are preserved. Headings are preserved to maintain the document structure but you may disable them; list rendering is always performed using the underlying markdown renderer.
 
@@ -139,13 +139,13 @@ Soft line breaks are removed but you can preserve them. Thematic breaks (`---`) 
 
 Code blocks are indented with two spaces, the info string if present is not preserved.
 
-### 
+### JSON
 
 The JSON renderer allows serializing a node tree such that it could be passed between processes or pushed to a remote queue for further processing.
 
 Circular references are resolved and the document has enough information to recreate a node tree with a 1:1 correlation with the original.
 
-### 
+### YAML
 
 The YAML renderer is designed to provide a compact view of the tree which is easy to read but can also include the node properties for an extended view of the document.
 
@@ -163,7 +163,7 @@ Compact output for a simple document:
 ---
 ```
 
-## 
+## Help
 
 ```
 Usage: mkout [options]
@@ -186,7 +186,7 @@ Options
 mkout@1.0.33
 ```
 
-### 
+### mkman
 
 ```
 Usage: mkman [options]
@@ -207,7 +207,7 @@ Options
 mkout@1.0.33
 ```
 
-### 
+### mktext
 
 ```
 Usage: mktext [options]
@@ -238,7 +238,7 @@ Options
 mkout@1.0.33
 ```
 
-### 
+### mkhtml
 
 ```
 Usage: mkhtml [options]
@@ -252,9 +252,9 @@ Options
 mkout@1.0.33
 ```
 
-## 
+## API
 
-### 
+### out
 
 ```javascript
 out([opts][, cb])
@@ -267,14 +267,14 @@ Returns an output stream.
 * `opts` Object processing options.
 * `cb` Function callback function.
 
-#### 
+#### Options
 
 * `type` String output type.
 * `input` Readable=process.stdin input stream.
 * `output` Writable=process.stdout output stream.
 * `render` Object renderer options.
 
-### 
+### JsonRenderer
 
 ```javascript
 new JsonRenderer([opts])
@@ -294,11 +294,11 @@ But be careful the tree can be very deep so it is not recommended you set
 
 * `opts` Object processing options.
 
-#### 
+#### Options
 
 * `indent` Number=0 number of spaces to indent the JSON.
 
-### 
+### Links
 
 ```javascript
 new Links()
@@ -309,7 +309,7 @@ Manages a list of links and their destinations in a linked list.
 The `links` array is a list of nodes and `destinations` maps link
 destinations to their index in the array.
 
-### 
+### .add
 
 ```javascript
 Links.prototype.add(node)
@@ -321,7 +321,7 @@ Returns a boolean indicating whether the link was added.
 
 * `node` Object the link node.
 
-### 
+### .list
 
 ```javascript
 Links.prototype.list([newline])
@@ -333,7 +333,7 @@ Returns list of link references.
 
 * `newline` String the newline character to use.
 
-### 
+### .reset
 
 ```javascript
 Links.prototype.reset()
@@ -341,7 +341,7 @@ Links.prototype.reset()
 
 Resets this instance so it does not contain any links.
 
-### 
+### ManRenderer
 
 ```javascript
 new ManRenderer([opts])
@@ -358,7 +358,7 @@ break (.hr) and the newline macro (.nl) after the preamble.
 
 * `opts` Object processing options.
 
-#### 
+#### Options
 
 * `autolink` Boolean=true create automatic links by index.
 * `section` String=1 man page section number.
@@ -369,7 +369,7 @@ break (.hr) and the newline macro (.nl) after the preamble.
 * `inline` String=emph|strong formatting for inline code.
 * `html` Boolean=false force inclusion of HTML blocks.
 
-### 
+### MarkdownRenderer
 
 ```javascript
 new MarkdownRenderer([opts])
@@ -383,7 +383,7 @@ completely tested for compliance.
 
 * `opts` Object processing options.
 
-### 
+### normalize
 
 ```javascript
 normalize(text)
@@ -400,7 +400,7 @@ Returns the normalized text.
 
 * `text` String input text.
 
-### 
+### TextRenderer
 
 ```javascript
 new TextRenderer([opts])
@@ -452,13 +452,13 @@ elements are preserved.
 
 * `opts` Object processing options.
 
-#### 
+#### Options
 
 * `autolink` Boolean=true create automatic links by index.
 * `indent` String amount of whitespace indentation for code blocks.
 * `preserve` Object map of node types that should be preserved.
 
-### 
+### YamlRenderer
 
 ```javascript
 new YamlRenderer([opts])
@@ -479,11 +479,11 @@ inspect the node properties disable `compact`:
 
 * `opts` Object processing options.
 
-#### 
+#### Options
 
 * `compact` Boolean=true create compact YAML documents.
 
-## 
+## License
 
 MIT
 
