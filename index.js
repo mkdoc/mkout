@@ -17,7 +17,7 @@ var through = require('through3')
 function load(type) {
   var info = types[type];
   if(info instanceof Function) {
-    return info; 
+    return info;
   }
   return require(info);
 }
@@ -29,6 +29,9 @@ function Render(opts) {
 
 function render(chunk, encoding, cb) {
   if(!Node.is(chunk, Node.EOF)) {
+    if(!chunk._type) {
+      chunk = Node.deserialize(chunk);
+    }
     this.push(this.renderer.render(chunk));
   }
   cb();
@@ -66,7 +69,7 @@ function out(opts, cb) {
     opts.input.pipe(opts.output);
   }else{
     if(!types[opts.type]) {
-      return cb(new Error('unknown output type: ' + opts.type)); 
+      return cb(new Error('unknown output type: ' + opts.type));
     }
 
     var Type = load(opts.type)
@@ -82,7 +85,7 @@ function out(opts, cb) {
 
     // handle output stream
     if(opts.output) {
-      render.pipe(opts.output); 
+      render.pipe(opts.output);
     }
 
     // ensure callback is called when the input stream ends
