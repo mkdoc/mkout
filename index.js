@@ -29,6 +29,10 @@ function Render(opts) {
 
 function render(chunk, encoding, cb) {
   if(!Node.is(chunk, Node.EOF)) {
+    /*
+     * this caters for when a stream is being piped directly and
+     * has not been deserialized to a real AST node
+     */
     if(!chunk._type) {
       chunk = Node.deserialize(chunk);
     }
